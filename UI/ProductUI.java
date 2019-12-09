@@ -26,7 +26,7 @@ public class ProductUI
                 System.out.println("In add package");
             }
             else if(choice == 3) {
-                //addCopy();
+                addCopy();
                 System.out.println("In add copy");
             }
             else if(choice == 4) {
@@ -39,7 +39,7 @@ public class ProductUI
                 System.out.println("In remove package");
             }
             else if(choice == 6) {
-                //removeCopy();
+                removeCopy();
                 System.out.println("In remove copy");          
             }
             else if(choice == 7) {
@@ -126,7 +126,7 @@ public class ProductUI
         System.out.println("Package has been added.");
     }
     
-    /*private void addCopy()
+    private void addCopy()
     {
         TextOptions text;
         text = new TextOptions("", "");
@@ -136,7 +136,7 @@ public class ProductUI
         ItemCtr.addCopy(serialNumber);
         System.out.println("Copy has been added.");
     }
-    
+    /*
     private void manageProduct()
     {
         TextOptions text;
@@ -186,7 +186,7 @@ public class ProductUI
         System.out.println(message);
     }
     
-    /*private void removeCopy()
+    private void removeCopy()
     {
         TextOptions text;
         text = new TextOptions("", "");
@@ -195,7 +195,7 @@ public class ProductUI
         serialNumber = text.inputString("Enter the serial number of copy");
         message = ItemCtr.removeCopy(serialNumber);
         System.out.println(message);
-    }*/
+    }
     
     private void showAll()
     {
