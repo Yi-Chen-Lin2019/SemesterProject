@@ -8,10 +8,12 @@ public class OrderUI
     private Scanner reader;
     private String inputLine;
     private OrderController oController;
+    private OrderLineUI olUI;
     
     private OrderUI()
     {
         oController = OrderController.getInstance();
+        olUI = OrderLineUI.getInstance();
         reader = new Scanner(System.in);
         inputLine = "";
     }
@@ -78,6 +80,20 @@ public class OrderUI
     public void updateOrder()
     {
         System.out.println("1. Update status");
+        System.out.println("2. Manage OrderLines");
+        inputLine = reader.nextLine();
+            if(inputLine.equals("1"))
+            {
+                System.out.println("Feature not implemented yet");
+            }
+            else if(inputLine.equals("2"))
+            {
+                olUI.main();
+            }
+            else
+            {
+                System.out.println("Please type 1 or 2");
+            }
     }
     public void cancelOrder()
     {
