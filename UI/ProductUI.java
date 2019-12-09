@@ -23,27 +23,23 @@ public class ProductUI
             }
             else if(choice == 2) { 
                 addPackage();
-                //ItemCtr.saveData();
                 System.out.println("In add package");
             }
             else if(choice == 3) {
                 //addCopy();
-                //ItemCtr.saveData();
                 System.out.println("In add copy");
             }
             else if(choice == 4) {
                 removeProduct();
-                //ItemCtr.saveData();
+                ItemCtr.saveData();
                 System.out.println("In remove product");
             }
             else if(choice == 5) {
                 removePackage();
-                //ItemCtr.saveData();
                 System.out.println("In remove package");
             }
             else if(choice == 6) {
                 //removeCopy();
-                //ItemCtr.saveData();
                 System.out.println("In remove copy");          
             }
             else if(choice == 7) {
