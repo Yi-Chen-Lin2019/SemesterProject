@@ -131,9 +131,11 @@ public class ProductUI
         TextOptions text;
         text = new TextOptions("", "");
         System.out.println("Please fill out the next fields:");
+        String barcode;
+        barcode = text.inputString("Barcode of product");
         String serialNumber;
         serialNumber = text.inputString("Serial number");
-        ItemCtr.addCopy(serialNumber);
+        ItemCtr.addCopy(barcode, serialNumber);
         System.out.println("Copy has been added.");
     }
     /*
@@ -182,7 +184,7 @@ public class ProductUI
         String message;
         String barcode;
         barcode = text.inputString("Enter the barcode of package");
-        message = ItemCtr.removePackage(barcode);
+        message = ItemCtr.removeItem(barcode);
         System.out.println(message);
     }
     
@@ -191,15 +193,15 @@ public class ProductUI
         TextOptions text;
         text = new TextOptions("", "");
         String message;
-        String serialNumber;
-        serialNumber = text.inputString("Enter the serial number of copy");
-        message = ItemCtr.removeCopy(serialNumber);
+        String barcode;
+        barcode = text.inputString("Enter the barcode of copy");
+        message = ItemCtr.removeItem(barcode);
         System.out.println(message);
     }
     
     private void showAll()
     {
-        ItemCtr.showAll();
+        ItemCtr.printAllItems();
     }
     
 }
