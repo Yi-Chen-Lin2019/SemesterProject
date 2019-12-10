@@ -18,7 +18,6 @@ public class ProductUI
             int choice = writeProductUI();
             if(choice == 1) {
                 addProduct();  
-                ItemCtr.saveData();
                 System.out.println("In add product");
             }
             else if(choice == 2) { 
@@ -31,7 +30,6 @@ public class ProductUI
             }
             else if(choice == 4) {
                 removeProduct();
-                ItemCtr.saveData();
                 System.out.println("In remove product");
             }
             else if(choice == 5) {
@@ -44,7 +42,6 @@ public class ProductUI
             }
             else if(choice == 7) {
                 //manageProduct();
-                //ItemCtr.saveData();
                 System.out.println("In manage product");          
             }
             else if(choice == 8) {
@@ -168,7 +165,7 @@ public class ProductUI
     {
         TextOptions text;
         text = new TextOptions("", "");
-        String message;
+        boolean message;
         String barcode;
         barcode = text.inputString("Enter the barcode of product");
         message = ItemCtr.removeItem(barcode);
@@ -179,7 +176,7 @@ public class ProductUI
     {
         TextOptions text;
         text = new TextOptions("", "");
-        String message;
+        boolean message;
         String barcode;
         barcode = text.inputString("Enter the barcode of package");
         message = ItemCtr.removeItem(barcode);
@@ -190,7 +187,7 @@ public class ProductUI
     {
         TextOptions text;
         text = new TextOptions("", "");
-        String message;
+        boolean message;
         String barcode;
         barcode = text.inputString("Enter the barcode of copy");
         message = ItemCtr.removeItem(barcode);

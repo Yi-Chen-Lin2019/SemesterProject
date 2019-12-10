@@ -28,12 +28,8 @@ public class KB extends ItemDescriptor
     {
         products.add(product);
     }
-    //public double getSellingPrice();
-    public double getCostPrice() {return 1;}
-    public int getMinStock() {return 1;}
-    public int getMaxStock() {retunr 1;}
-    public double getRecommendedRetailPrice() {return 1;}
-    public double getTradeAllowance() {return 1;}
-    public int getCategoryID() {return 1;}
-    
+    public String toString() {
+        return super.toString() + "\n price: " + price;
+    }
+   
 }
