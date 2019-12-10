@@ -49,12 +49,10 @@ public class ProductUI
             }
             else if(choice == 8) {
                 //managePackage();
-                //ItemCtr.saveData();
                 System.out.println("In manage package");          
             }
             else if(choice == 9) {
                 //manageCopy();
-                //ItemCtr.saveData();
                 System.out.println("In manage copy");          
             }
             else if(choice == 10) {
