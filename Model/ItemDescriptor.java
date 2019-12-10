@@ -27,8 +27,15 @@ public abstract class ItemDescriptor
     {
         this.name = name;
     }
-    public double getSellingPrice()
+    /*public double getSellingPrice()
     {
         return 100000000.0;
-    }
+    }*/
+    public abstract double getSellingPrice();
+    public abstract double getCostPrice();
+    public abstract int getMinStock();
+    public abstract int getMaxStock();
+    public abstract double getRecommendedRetailPrice();
+    public abstract double getTradeAllowance();
+    public abstract int getCategoryID();
 }
