@@ -96,4 +96,7 @@ public class ItemController
     }
     
 
+    public void saveData() {
+        iCon.saveItem();
+    }
 }
