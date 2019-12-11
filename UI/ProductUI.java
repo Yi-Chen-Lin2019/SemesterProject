@@ -4,14 +4,23 @@ import Control.*;
 public class ProductUI
 {
     private ItemController ItemCtr;
+    private static ProductUI instance;
     /**
      * Constructor for objects of class DVDMenu
      */
-    public ProductUI()
+    private ProductUI()
     {
-        ItemCtr = new ItemController();
+        ItemCtr = ItemController.getInstance();
     }
 
+    public static ProductUI getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new ProductUI();   
+        }
+        return instance;
+    }
     public void start() {
         boolean exit=false;
         while (!exit) {
