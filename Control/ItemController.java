@@ -5,11 +5,20 @@ import java.util.*;
 
 public class ItemController
 {
-    private ItemContainer iCon = ItemContainer.getInstance();
-    public ItemController() {
-        
+    private ItemContainer iCon;
+    private static ItemController instance;
+    private ItemController() {
+        iCon = ItemContainer.getInstance();
     }
     
+    public static ItemController getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new ItemController();   
+        }
+        return instance;
+    }
     public Copy getCopy(String barcode) {
         Copy c = null;
         if(getProduct(barcode)!= null) {
