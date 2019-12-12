@@ -69,4 +69,11 @@ public class TextOptions {
         input = new TextInput();
         return input.inputNumber(question);
     }
+    
+    public double inputDouble(String question)
+    {
+        TextInput input;
+        input = new TextInput();
+        return input.inputNumber(question);
+    }
 }

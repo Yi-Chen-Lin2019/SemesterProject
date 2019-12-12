@@ -4,23 +4,14 @@ import Control.*;
 public class ProductUI
 {
     private ItemController ItemCtr;
-    private static ProductUI instance;
     /**
      * Constructor for objects of class DVDMenu
      */
-    private ProductUI()
+    public ProductUI()
     {
-        ItemCtr = ItemController.getInstance();
+        ItemCtr = new ItemController();
     }
 
-    public static ProductUI getInstance()
-    {
-        if(instance == null)
-        {
-            instance = new ProductUI();   
-        }
-        return instance;
-    }
     public void start() {
         boolean exit=false;
         while (!exit) {
@@ -104,13 +95,13 @@ public class ProductUI
         int max;
         max = text.inputNumber("Maximum stock");
         double rec;
-        rec = text.inputNumber("Recommended retail price");
+        rec = text.inputDouble("Recommended retail price");
         double trade;
-        trade = text.inputNumber("Trade allowance");
+        trade = text.inputDouble("Trade allowance");
         double cost;
-        cost = text.inputNumber("Cost price");
+        cost = text.inputDouble("Cost price");
         double sell;
-        sell = text.inputNumber("Selling price");
+        sell = text.inputDouble("Selling price");
         ItemCtr.addProduct(barcode, name, id, min, max, rec, trade, cost, sell);
         System.out.println("Product has been added.");
     }
@@ -125,7 +116,7 @@ public class ProductUI
         String name;
         name = text.inputString("Name");
         double price;
-        price = text.inputNumber("Package price");
+        price = text.inputDouble("Package price");
         ItemCtr.addPackage(barcode, name, price);
         System.out.println("Package has been added.");
     }

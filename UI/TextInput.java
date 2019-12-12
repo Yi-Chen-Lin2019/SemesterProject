@@ -31,6 +31,18 @@ public class TextInput {
         return number;
     }
     
+    public static double inputDouble(String question){   
+        Scanner keyboard = new Scanner(System.in);
+        double number = 0;
+        printQuestion(question);
+        while (!keyboard.hasNextDouble()){
+            System.out.println("Input must be a double - try again");
+            keyboard.nextLine();
+        }
+        number = keyboard.nextDouble();
+        return number;
+    }
+    
     public static String inputString(String question) {
         Scanner keyboard = new Scanner(System.in);
         printQuestion(question);
