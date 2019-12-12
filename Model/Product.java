@@ -29,6 +29,10 @@ public class Product extends ItemDescriptor
         isUnique = false;
     }
     
+    public String toString() {
+        return  super.toString() +    "\n Id of product: " + categoryID + "\n Minimum stock: " + minStock + "\n Maximum stock: " + maxStock + "\n Recommended retail price: " + recommendedRetailPrice + "\n Trade allowance: " + tradeAllowance + "\n Cost price: " + costPrice + "\n Sell price: " +sellingPrice;
+    }
+    
     public int getCategoryID()
     {
         return categoryID;
@@ -120,6 +124,10 @@ public class Product extends ItemDescriptor
     		c = copies.pop();
     	}
     	return c;
+    }
+    
+    public void printCopy() {
+        copies.peek();
     }
     
     public void addCopy(Copy copy)

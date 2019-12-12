@@ -17,7 +17,7 @@ public class MainUI {
      */
     public MainUI() {
         // initialise instance variables
-        productUI = new ProductUI();
+        productUI = ProductUI.getInstance();
         
     }
 

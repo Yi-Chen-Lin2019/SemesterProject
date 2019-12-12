@@ -5,11 +5,20 @@ import java.util.*;
 
 public class ItemController
 {
-    private ItemContainer iCon = ItemContainer.getInstance();
-    public ItemController() {
-        
+    private ItemContainer iCon;
+    private static ItemController instance;
+    private ItemController() {
+        iCon = ItemContainer.getInstance();
     }
     
+    public static ItemController getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new ItemController();   
+        }
+        return instance;
+    }
     public Copy getCopy(String barcode) {
         Copy c = null;
         if(getProduct(barcode)!= null) {
@@ -65,17 +74,19 @@ public class ItemController
         KB pac = new KB(barcode, name, price);
         iCon.add(pac);  
         return true;
-    }   
+    } 
+    
     public void printAllItems()
     {
-        for(int index = 0; index < iCon.read().size(); index++) {               
+        /*for(int index = 0; index < iCon.read().size(); index++) {               
                 /*if(iCon.read().get(index) instanceof Product) {
                     p = (Product)iCon.read().get(index);
-                    p.print();*/
+                    p.print();
             iCon.read().get(index).print();
             System.out.println("___________________");
-        }       
+        }*/      
         
+        iCon.print();
     }
     
     public boolean removeItem(String barcode)
@@ -96,7 +107,4 @@ public class ItemController
     }
     
 
-    public void saveData() {
-        iCon.saveItem();
-    }
 }
