@@ -10,6 +10,7 @@ package UI;
 public class MainUI {
     // instance variables 
     private ProductUI productUI;
+    private OrderUi orderUI;
     
 
     /**
@@ -18,7 +19,7 @@ public class MainUI {
     public MainUI() {
         // initialise instance variables
         productUI = new ProductUI();
-        
+        orderUI = OrderUI.getInstance();
     }
 
     public void start() { 
@@ -29,13 +30,13 @@ public class MainUI {
                 productUI.start();    
             }
             else if(choice == 2) { 
-                //dvdMenu.start();
+                System.out.println("Feature not implemented yet");
             }
             else if(choice == 3) {
-                //loanMenu.start(); 
+                orderUI.main(); 
             }
             else if(choice == 4) {
-                // TODO generate test data, this must not be part of final version
+                System.out.println("Feature not implemented yet");
             }
             else {
                 writeEnd();
@@ -46,10 +47,11 @@ public class MainUI {
     
     private int writeMainMenu(){
         TextOptions menu = new TextOptions("\n ***Main menu***", "Quit the program");
-        menu.addOption("Product menu");
-        menu.addOption("??");
-        menu.addOption("??");
-        menu.addOption("Generate test data (WIP)");
+        menu.addOption("1. Product menu");
+        menu.addOption("2. Customer Menu");
+        menu.addOption("3. Order menu");
+        menu.addOption("4. Loan menu");
+        menu.addOption("5. quit");
         return menu.prompt();
     }
     
