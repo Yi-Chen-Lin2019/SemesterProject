@@ -1,99 +1,118 @@
 package UI;
 import Control.*;
-import java.util.*;
+import Model.*;
 
 public class OrderLineUI
 {
-    private static OrderLineUI instance;
-    private Scanner reader;
-    private String inputLine;
-    private OrderLineController olController;
+    // instance variables - replace the example below with your own
+    private InputRead reader = new InputRead();
+    private OrderLineController olCtr = new OrderLineController();
     
-    private OrderLineUI()
+    /**
+     * Constructor for objects of class OrderLineUI
+     */
+    public OrderLineUI()
     {
-        reader = new Scanner(System.in);
-        inputLine = "";
-        olController = OrderLineController.getInstance();
+        
     }
 
-    public static OrderLineUI getInstance()
+    private void sleepMethod(int time)
     {
-        if(instance == null)
-        {
-            instance = new OrderLineUI();
+        try {Thread.sleep(time);
         }
-        return instance;
-    }
-    public void main()
-    {
-        boolean back = false;
-        System.out.println("1. Add order line");
-        System.out.println("2. Add order line of copy");
-        System.out.println("3. Edit order line");
-        System.out.println("4. Edit order line of copy");
-        System.out.println("5. Remove order line");
-        System.out.println("6. Remove order line of copy");
-        System.out.println("7. back");
-        while(back == false)
-        {
-            inputLine = reader.nextLine();
-            if(inputLine.equals("1"))
-            {
-                addOrderLine();
-            }
-            else if(inputLine.equals("2"))
-            {
-                addOrderLineOfCopy();
-            }
-            else if(inputLine.equals("3"))
-            {
-                editOrderLine();
-            }
-            else if(inputLine.equals("4"))
-            {
-                editOrderLineOfCopy();
-            }
-            else if(inputLine.equals("5"))
-            {
-                removeOrderLine();
-            }
-            else if(inputLine.equals("6"))
-            {
-                removeOrderLineOfCopy();
-            }
-            else if(inputLine.equals("7"))
-            {
-                back = true;
-            }
-            else
-            {
-                System.out.println(inputLine);
-                System.out.println("Please input 1,2,3,4,5,6 or 7");
-            }
+        catch(InterruptedException e){
         }
     }
-    public void addOrderLine()
+    
+    private void printOptionsMainMenu()
     {
-        System.out.println("Feature not implemented yet");
+        System.out.print('\u000C');
+        System.out.println("..........Order Management .......");
+        System.out.println("Options..........................");
+        System.out.println("1 Add order line (timber)");
+        System.out.println("2 Add order line of copy");
+        System.out.println("3 Edit order line (timber)");
+        System.out.println("4 Edit order line of copy");
+        System.out.println("5 Remove order line (timber)");
+        System.out.println("6 Remove order line of copy");
+        System.out.println("7 Return");
+        System.out.println(".................................");
+
     }
-    public void addOrderLineOfCopy()
+    
+
+    public void mainMenu(int orderId)
     {
-        System.out.println("Feature not implemented yet");
+        System.out.print('\u000C');
+        String chosenOption="0";
+        while (chosenOption!="7")
+        {
+            printOptionsMainMenu();
+            chosenOption= reader.readText(">");
+            switch (chosenOption)
+            {
+                case "1":
+                subMenuAddOrderLine(orderId);
+                break;
+                case "2":
+                subMenuAddOrderLineOfCopy(orderId);         
+                break;
+                case "3":
+                System.out.println("Need help here");
+                reader.readText("Press enter to continue...");
+
+                break;
+                case "4":                   
+                System.out.println("Need help here");  
+                reader.readText("Press enter to continue...");
+                break;
+                case "5":
+                System.out.println("Need help here");  
+                reader.readText("Press enter to continue...");
+                break;
+                case "6":
+                System.out.println("Need help here"); 
+                reader.readText("Press enter to continue...");
+                break;
+                case "7":
+                chosenOption="7";
+                break;
+                
+                default: 
+                System.out.println("No legal choice");
+                break;
+            }
+        }
+
     }
-    public void editOrderLine()
-    {
-        System.out.println("Feature not implemented yet");
+    
+    private void subMenuAddOrderLine(int orderId) {  
+        String barcode = reader.readText("Barcode:");
+        int quantity = reader.readInt("Quantity:");
+        if (olCtr.addOrderLine(orderId, barcode, quantity))
+        {
+            System.out.println("Order line added");
+            sleepMethod(2000);
+        }
+        else
+        {
+            System.out.println("Order line could not be added");
+            sleepMethod(2000);
+        }
+        
     }
-    public void editOrderLineOfCopy()
-    {
-        System.out.println("Feature not implemented yet");
-    }
-    public void removeOrderLine()
-    {
-        System.out.println("Feature not implemented yet");
-    }
-    public void removeOrderLineOfCopy()
-    {
-        System.out.println("Feature not implemented yet");
+
+    private void subMenuAddOrderLineOfCopy(int orderId) {	
+    	String barcode = reader.readText("Barcode:");
+        if (olCtr.addCopyOrderLine(orderId, barcode))
+        {
+            System.out.println("Order line of copy added");
+            sleepMethod(2000);
+        }
+        else
+        {
+            System.out.println("Order line of copy could not be added");
+            sleepMethod(2000);
+        }
     }
 }
