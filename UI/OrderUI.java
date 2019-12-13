@@ -80,17 +80,17 @@ public class OrderUI
         System.out.println("Which Order do you want to print?");
         inputLine = reader.nextLine();
         int id = Integer.parseInt(inputLine);
-        CusomerOrder order = oController.findOrder(id);
-        for(OrderLine line : order.getOrderLines)ű
+        CustomerOrder order = oController.findOrder(id);
+        for(OrderLine line : order.getOrderLines())
         {
-            System.out.println("quantity: " line.getQuantity);
-            System.out.println("price: " line.getPrice);
-            System.out.println("product: " line.getItem().getName());
+            System.out.println("quantity: " +line.getQuantity());
+            System.out.println("price: " +line.getPrice());
+            System.out.println("product: " +line.getItem().getName());
         }
-        for(OrderLine line : order.getCopyOrderLines)ű
+        for(OrderLineOfCopy line : order.getCopyOrderLines())
         {
-            System.out.println("price: " line.getPrice);
-            System.out.println("Serial Number: " line.getCopy().getSerialNumber());
+            System.out.println("price: " +line.getPrice());
+            System.out.println("Serial Number: " +line.getCopy().getSerialNumber());
         }
     }
     public void updateOrder()
