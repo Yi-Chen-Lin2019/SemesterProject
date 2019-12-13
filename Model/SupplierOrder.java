@@ -32,4 +32,8 @@ public class SupplierOrder extends GenericOrder
     {
         orderLines.remove(orderLine);
     }
+    public void addCopyOrderLine(OrderLineOfCopy orderline)
+    {
+        
+    }
 }
