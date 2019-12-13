@@ -39,11 +39,11 @@ public class OrderController
         }
         return null;
     }
-    public void addOrderLine(CustomerOrder order, int quantity, double price, String barcode)
+    /*public void addOrderLine(CustomerOrder order, int quantity, double price, String barcode)
     {
         order.addOrderLine(olController.createOrderLine(quantity, price, barcode));
         order.setTotalPrice(order.getTotalPrice() + price);
-    }
+    }*/
     public boolean cancelOrder(int id)
     {
         for(CustomerOrder order : orders.read())
