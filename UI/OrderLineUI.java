@@ -116,7 +116,7 @@ public class OrderLineUI
 
     private void subMenuAddOrderLineOfCopy(int orderId) {   
         String barcode = reader.inputString("Barcode:");
-        String price = reader.inputString("Price:");
+        int price = reader.inputNumber("Price:");
         if (olCtr.addCopyOrderLine(orderId, barcode,price))
         {
             System.out.println("Order line of copy added");
