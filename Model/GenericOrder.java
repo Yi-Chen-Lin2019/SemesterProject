@@ -62,4 +62,6 @@ public abstract class GenericOrder
     {
         this.status = status;
     }
+    public abstract void addOrderLine(OrderLine orderline);
+    public abstract void addCopyOrderLine(OrderLineOfCopy orderline);
 }
