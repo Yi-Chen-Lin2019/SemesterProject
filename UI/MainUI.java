@@ -10,7 +10,7 @@ package UI;
 public class MainUI {
     // instance variables 
     private ProductUI productUI;
-    private OrderUi orderUI;
+    private OrderUI orderUI;
     
 
     /**

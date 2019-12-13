@@ -9,6 +9,7 @@ public class OrderUI
     private String inputLine;
     private OrderController oController;
     private OrderLineUI olUI;
+    private TextInput reader2 = new TextInput();
     
     private OrderUI()
     {
@@ -88,7 +89,8 @@ public class OrderUI
             }
             else if(inputLine.equals("2"))
             {
-                olUI.mainMenu();
+                int orderID = reader2.inputNumber("Order ID:");
+                olUI.mainMenu(orderID);
             }
             else
             {
