@@ -5,15 +5,24 @@ import Model.*;
 public class OrderLineUI
 {
     // instance variables - replace the example below with your own
-    private InputRead reader = new InputRead();
-    private OrderLineController olCtr = new OrderLineController();
-    
+    private TextInput reader = new TextInput();
+    private OrderLineController olCtr = OrderLineController.getInstance();
+    private static OrderLineUI instance;
     /**
      * Constructor for objects of class OrderLineUI
      */
     public OrderLineUI()
     {
         
+    }
+    
+    public static OrderLineUI getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new OrderLineUI();
+        }
+        return instance;
     }
 
     private void sleepMethod(int time)
@@ -26,14 +35,14 @@ public class OrderLineUI
     
     private void printOptionsMainMenu()
     {
-        System.out.print('\u000C');
-        System.out.println("..........Order Management .......");
+        //System.out.print('\u000C');
+        System.out.println("..........Order Line Management .......");
         System.out.println("Options..........................");
-        System.out.println("1 Add order line (timber)");
+        System.out.println("1 Add order line");
         System.out.println("2 Add order line of copy");
-        System.out.println("3 Edit order line (timber)");
+        System.out.println("3 Edit order line");
         System.out.println("4 Edit order line of copy");
-        System.out.println("5 Remove order line (timber)");
+        System.out.println("5 Remove order line");
         System.out.println("6 Remove order line of copy");
         System.out.println("7 Return");
         System.out.println(".................................");
@@ -43,12 +52,13 @@ public class OrderLineUI
 
     public void mainMenu(int orderId)
     {
-        System.out.print('\u000C');
+        //System.out.print('\u000C');
         String chosenOption="0";
-        while (chosenOption!="7")
+        boolean back = false;
+        while (!back)
         {
             printOptionsMainMenu();
-            chosenOption= reader.readText(">");
+            chosenOption= reader.inputString(">");
             switch (chosenOption)
             {
                 case "1":
@@ -58,24 +68,25 @@ public class OrderLineUI
                 subMenuAddOrderLineOfCopy(orderId);         
                 break;
                 case "3":
-                System.out.println("Need help here");
-                reader.readText("Press enter to continue...");
+                System.out.println("Not implemented yet");
+                reader.inputString("Press enter to continue...");
 
                 break;
                 case "4":                   
-                System.out.println("Need help here");  
-                reader.readText("Press enter to continue...");
+                System.out.println("Not implemented yet");  
+                reader.inputString("Press enter to continue...");
                 break;
                 case "5":
-                System.out.println("Need help here");  
-                reader.readText("Press enter to continue...");
+                System.out.println("Not implemented yet");  
+                reader.inputString("Press enter to continue...");
                 break;
                 case "6":
-                System.out.println("Need help here"); 
-                reader.readText("Press enter to continue...");
+                System.out.println("Not implemented yet"); 
+                reader.inputString("Press enter to continue...");
                 break;
                 case "7":
                 chosenOption="7";
+                back = true;
                 break;
                 
                 default: 
@@ -87,8 +98,8 @@ public class OrderLineUI
     }
     
     private void subMenuAddOrderLine(int orderId) {  
-        String barcode = reader.readText("Barcode:");
-        int quantity = reader.readInt("Quantity:");
+        String barcode = reader.inputString("Barcode:");
+        int quantity = reader.inputNumber("Quantity:");
         if (olCtr.addOrderLine(orderId, barcode, quantity))
         {
             System.out.println("Order line added");
@@ -102,8 +113,8 @@ public class OrderLineUI
         
     }
 
-    private void subMenuAddOrderLineOfCopy(int orderId) {	
-    	String barcode = reader.readText("Barcode:");
+    private void subMenuAddOrderLineOfCopy(int orderId) {   
+        String barcode = reader.inputString("Barcode:");
         if (olCtr.addCopyOrderLine(orderId, barcode))
         {
             System.out.println("Order line of copy added");
