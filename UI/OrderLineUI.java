@@ -100,7 +100,8 @@ public class OrderLineUI
     private void subMenuAddOrderLine(int orderId) {  
         String barcode = reader.inputString("Barcode:");
         int quantity = reader.inputNumber("Quantity:");
-        if (olCtr.addOrderLine(orderId, barcode, quantity))
+        int price = reader.inputNumber("Price:");
+        if (olCtr.addOrderLine(orderId, barcode, quantity, price))
         {
             System.out.println("Order line added");
             sleepMethod(2000);
@@ -115,7 +116,8 @@ public class OrderLineUI
 
     private void subMenuAddOrderLineOfCopy(int orderId) {   
         String barcode = reader.inputString("Barcode:");
-        if (olCtr.addCopyOrderLine(orderId, barcode))
+        String price = reader.inputString("Price:");
+        if (olCtr.addCopyOrderLine(orderId, barcode,price))
         {
             System.out.println("Order line of copy added");
             sleepMethod(2000);
