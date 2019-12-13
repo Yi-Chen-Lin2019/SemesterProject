@@ -7,11 +7,20 @@ import Model.*;
 
 public class OrderLineController
 {
-
-    public OrderLineController()
+    private static OrderLineController instance;
+    
+    private OrderLineController()
     {
     }
-
+    
+    public static OrderLineController getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new OrderLineController();
+        }
+        return instance;
+    }
     public boolean addOrderLine(int orderId, String barcode, int quantity)
     {
         OrderController oCtr = OrderController.getInstance();
@@ -30,9 +39,10 @@ public class OrderLineController
             return false;
         }
         // Create new suborder and link it to the found item descriptor
-        OrderLine ol= new OrderLine(quantity, item);
+        OrderLine ol= new OrderLine(quantity,0, item);
         // Insert this suborder in the found order
-        return order.addOrderLine(ol);
+        order.addOrderLine(ol);
+        return true;
     }
     
     public boolean addCopyOrderLine(int orderId, String barcode)
@@ -55,10 +65,11 @@ public class OrderLineController
             return false;
         }
         // Create new suborder and link it to the found item descriptor
-        OrderLineOfCopy oc= new OrderLineOfCopy(copy);
+        OrderLineOfCopy oc= new OrderLineOfCopy(0,copy);
         oc.setPrice(iCtr.getItem(barcode).getSellingPrice());
         // Insert this suborder in the found order
-        return order.addCopyOrderLine(oc);
+        order.addCopyOrderLine(oc);
+        return true;
     }
     
     public boolean editOrderLine(int orderId, String barcode, int quantity)
@@ -79,9 +90,10 @@ public class OrderLineController
             return false;
         }
         // Create new suborder and link it to the found item descriptor
-        OrderLine ol= new OrderLine(quantity, item);
+        OrderLine ol= new OrderLine(quantity,0, item);
         // Insert this suborder in the found order
-        return order.addOrderLine(ol);
+        order.addOrderLine(ol);
+        return true;
     }
     
     /*
