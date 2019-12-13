@@ -1,5 +1,6 @@
 package UI;
 import Control.*;
+import Model.*;
 import java.util.*;
 
 public class OrderUI
@@ -76,7 +77,21 @@ public class OrderUI
     }
     public void printOrder()
     {
-        System.out.println("Feature not implemented yet.");
+        System.out.println("Which Order do you want to print?");
+        inputLine = reader.nextLine();
+        int id = Integer.parseInt(inputLine);
+        CusomerOrder order = oController.findOrder(id);
+        for(OrderLine line : order.getOrderLines)ű
+        {
+            System.out.println("quantity: " line.getQuantity);
+            System.out.println("price: " line.getPrice);
+            System.out.println("product: " line.getItem().getName());
+        }
+        for(OrderLine line : order.getCopyOrderLines)ű
+        {
+            System.out.println("price: " line.getPrice);
+            System.out.println("Serial Number: " line.getCopy().getSerialNumber());
+        }
     }
     public void updateOrder()
     {
