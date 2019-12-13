@@ -88,7 +88,7 @@ public class OrderUI
             }
             else if(inputLine.equals("2"))
             {
-                olUI.main();
+                olUI.mainMenu();
             }
             else
             {
