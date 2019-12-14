@@ -21,6 +21,7 @@ public class MainUI {
         productUI = new ProductUI();
         orderUI = OrderUI.getInstance();
     }
+    
 
     public void start() { 
         boolean exit=false;
@@ -47,11 +48,10 @@ public class MainUI {
     
     private int writeMainMenu(){
         TextOptions menu = new TextOptions("\n ***Main menu***", "Quit the program");
-        menu.addOption("1. Product menu");
-        menu.addOption("2. Customer Menu");
-        menu.addOption("3. Order menu");
-        menu.addOption("4. Loan menu");
-        menu.addOption("5. quit");
+        menu.addOption("Product menu");
+        menu.addOption("Customer Menu");
+        menu.addOption("Order menu");
+        menu.addOption("Loan menu");
         return menu.prompt();
     }
     

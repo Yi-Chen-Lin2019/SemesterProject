@@ -2,19 +2,18 @@ package Model;
 
 public class OrderLineOfCopy
 {
-    private double price;
+	private static int number = 1;
+    private int orderLineOfCopyNum;
+	private double price;
     private Copy copy;
     
-    public OrderLineOfCopy(double price, Copy copy)
+    public OrderLineOfCopy(Copy copy)
     {
-        this.price = price;
+    	orderLineOfCopyNum = number++;
         this.copy = copy;
     }
 
-    public double getPrice()
-    {
-        return price;
-    }
+    
     public Copy getCopy()
     {
         return copy;
@@ -27,4 +26,14 @@ public class OrderLineOfCopy
     {
         this.copy = copy;
     }
+    public int getOrderLineOfCopyNum()
+    {
+        return orderLineOfCopyNum;
+    }
+
+
+	public double getPrice() {
+		// TODO Auto-generated method stub
+		return price;
+	}
 }

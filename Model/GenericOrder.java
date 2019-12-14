@@ -11,13 +11,13 @@ public abstract class GenericOrder
     private EmployeeRole employee;
     public String status;
     
-    public GenericOrder(String orderedDate, String deliveryDate, double totalPrice, EmployeeRole employee, String status)
+    public GenericOrder(String orderedDate, String deliveryDate, EmployeeRole employee, String status)
     {
         this.orderID = id;
         id++;
         this.orderedDate = orderedDate;
         this.deliveryDate = deliveryDate;
-        this.totalPrice = totalPrice;
+        //this.totalPrice = totalPrice;
         this.employee = employee;
         this.status = status;
     }
@@ -62,6 +62,8 @@ public abstract class GenericOrder
     {
         this.status = status;
     }
-    public abstract void addOrderLine(OrderLine orderline);
-    public abstract void addCopyOrderLine(OrderLineOfCopy orderline);
+
+	public abstract boolean addOrderLine(OrderLine ol);
+
+	public abstract boolean addCopyOrderLine(OrderLineOfCopy oc);
 }

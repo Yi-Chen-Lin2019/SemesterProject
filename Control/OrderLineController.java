@@ -7,21 +7,12 @@ import Model.*;
 
 public class OrderLineController
 {
-    private static OrderLineController instance;
-    
-    private OrderLineController()
+
+    public OrderLineController()
     {
     }
-    
-    public static OrderLineController getInstance()
-    {
-        if(instance == null)
-        {
-            instance = new OrderLineController();
-        }
-        return instance;
-    }
-    public boolean addOrderLine(int orderId, String barcode, int quantity, int price)
+
+    public boolean addOrderLine(int orderId, String barcode, int quantity)
     {
         OrderController oCtr = OrderController.getInstance();
         GenericOrder order = oCtr.findOrder(orderId);
@@ -39,19 +30,18 @@ public class OrderLineController
             return false;
         }
         // Create new suborder and link it to the found item descriptor
-        OrderLine ol= new OrderLine(quantity,price, item);
+        OrderLine ol= new OrderLine(quantity, item);
         // Insert this suborder in the found order
-        order.addOrderLine(ol);
-        return true;
+        return order.addOrderLine(ol);
     }
     
-    public boolean addCopyOrderLine(int orderId, String barcode, int price)
+    public boolean addCopyOrderLine(int orderId, String barcode)
     {
         OrderController oCtr = new OrderController();
         GenericOrder order = oCtr.findOrder(orderId);
         if (order == null)
         {
-            System.out.println("Error here");
+            //System.out.println("Error here");
             return false;
             // This should not happen if we had chosen an existing order
         }
@@ -61,15 +51,14 @@ public class OrderLineController
         Copy copy = iCtr.getCopy(barcode);
         if (copy == null)
         {
-            System.out.println("Error here2");
+            //System.out.println("Error here2");
             return false;
         }
         // Create new suborder and link it to the found item descriptor
-        OrderLineOfCopy oc= new OrderLineOfCopy(price,copy);
+        OrderLineOfCopy oc= new OrderLineOfCopy(copy);
         oc.setPrice(iCtr.getItem(barcode).getSellingPrice());
         // Insert this suborder in the found order
-        order.addCopyOrderLine(oc);
-        return true;
+        return order.addCopyOrderLine(oc);
     }
     
     public boolean editOrderLine(int orderId, String barcode, int quantity)
@@ -90,10 +79,9 @@ public class OrderLineController
             return false;
         }
         // Create new suborder and link it to the found item descriptor
-        OrderLine ol= new OrderLine(quantity,0, item);
+        OrderLine ol= new OrderLine(quantity, item);
         // Insert this suborder in the found order
-        order.addOrderLine(ol);
-        return true;
+        return order.addOrderLine(ol);
     }
     
     /*

@@ -2,14 +2,17 @@ package Model;
 
 public class OrderLine
 {
-    private int quantity;
+	private static int number = 1;
+    private int orderLineNum;
+	private int quantity;
     private double price;
     private ItemDescriptor item;
     
-    public OrderLine(int quantity, double price, ItemDescriptor item)
+    public OrderLine(int quantity, ItemDescriptor item)
     {
-        this.quantity = quantity;
-        this.price = price;
+    	this.orderLineNum = number++;
+    	this.quantity = quantity;
+        this.price = item.getSellingPrice();
         this.item = item;
     }
 
@@ -36,5 +39,9 @@ public class OrderLine
     public void setItem(ItemDescriptor item)
     {
         this.item = item;
+    }
+    public int getOrderLineNum()
+    {
+        return orderLineNum;
     }
 }

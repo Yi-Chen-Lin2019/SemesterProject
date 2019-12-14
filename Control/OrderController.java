@@ -6,12 +6,12 @@ public class OrderController
 {
     private static OrderController instance;
     private CustomerOrderContainer orders;
-    private OrderLineController olController;
+    private OrderLineController olController = new OrderLineController();
     
     public OrderController()
     {
         orders = CustomerOrderContainer.getInstance();
-        olController = OrderLineController.getInstance();
+        
     }
     
     public static OrderController getInstance()
@@ -24,7 +24,7 @@ public class OrderController
     }
     public int createOrder(String orderedDate, EmployeeRole employee, CustomerRole customer)
     {
-        CustomerOrder order = new CustomerOrder(orderedDate, "Not delivered yet", 0, employee, "waiting for confirmation", customer);
+        CustomerOrder order = new CustomerOrder(orderedDate, "Not delivered yet", employee, "waiting for confirmation", customer);
         orders.add(order);
         return order.getOrderID();
     }
@@ -39,11 +39,7 @@ public class OrderController
         }
         return null;
     }
-    /*public void addOrderLine(CustomerOrder order, int quantity, double price, String barcode)
-    {
-        order.addOrderLine(olController.createOrderLine(quantity, price, barcode));
-        order.setTotalPrice(order.getTotalPrice() + price);
-    }*/
+    
     public boolean cancelOrder(int id)
     {
         for(CustomerOrder order : orders.read())
