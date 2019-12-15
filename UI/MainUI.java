@@ -11,6 +11,7 @@ public class MainUI {
     // instance variables 
     private ProductUI productUI;
     private OrderUI orderUI;
+    private TryMe tryMe = new TryMe();
     
 
     /**
