@@ -39,7 +39,7 @@ public class MainUI {
             else if(choice == 4) {
                 System.out.println("Feature not implemented yet");
             }
-            else if(choice == 100) {
+            else if(choice == 6) {
                 tryMe.setUp();
             }
             else {
@@ -56,7 +56,7 @@ public class MainUI {
         menu.addOption("3. Order menu");
         menu.addOption("4. Loan menu");
         menu.addOption("5. quit");
-        menu.addOption("100 Populate TryMe");
+        menu.addOption("Populate TryMe");
         return menu.prompt();
     }
     
