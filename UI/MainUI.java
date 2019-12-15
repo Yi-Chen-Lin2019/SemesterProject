@@ -38,6 +38,9 @@ public class MainUI {
             else if(choice == 4) {
                 System.out.println("Feature not implemented yet");
             }
+            else if(choice == 100) {
+                tryMe.setUp();
+            }
             else {
                 writeEnd();
                 exit = true;
@@ -52,6 +55,7 @@ public class MainUI {
         menu.addOption("3. Order menu");
         menu.addOption("4. Loan menu");
         menu.addOption("5. quit");
+        menu.addOption("100 Populate TryMe");
         return menu.prompt();
     }
     
