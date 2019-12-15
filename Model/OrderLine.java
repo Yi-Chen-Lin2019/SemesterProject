@@ -12,7 +12,7 @@ public class OrderLine
     {
     	this.orderLineNum = number++;
     	this.quantity = quantity;
-        this.price = item.getSellingPrice();
+        this.price = item.getSellingPrice()*quantity;
         this.item = item;
     }
 
