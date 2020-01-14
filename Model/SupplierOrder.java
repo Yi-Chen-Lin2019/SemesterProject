@@ -1,13 +1,18 @@
 package Model;
 import java.util.*;
-
+/**
+ * SupplierOrder extends GenericOrder
+ *
+ * @author Yi-Chen Lin
+ * @version 20191215
+ */
 public class SupplierOrder extends GenericOrder
 {
     private SupplierRole supplier;
     private ArrayList<OrderLine> orderLines;
-    public SupplierOrder(String orderedDate, String deliveryDate, double totalPrice, EmployeeRole employee, String status, SupplierRole supplier)
+    public SupplierOrder(String orderedDate)
     {
-        super(orderedDate, deliveryDate, totalPrice, employee, status);
+        super(orderedDate);
         this.supplier = supplier;
         orderLines = new ArrayList<>();
     }
@@ -24,16 +29,19 @@ public class SupplierOrder extends GenericOrder
     {
         this.supplier = supplier;
     }
-    public void addOrderLine(OrderLine orderLine)
+    public boolean addOrderLine(OrderLine orderLine)
     {
         orderLines.add(orderLine);
+        return true;
     }
     public void removeOrderLine(OrderLine orderLine)
     {
         orderLines.remove(orderLine);
     }
-    public void addCopyOrderLine(OrderLineOfCopy orderline)
-    {
-    
-    }
+
+	@Override
+	public boolean addCopyOrderLine(OrderLineOfCopy oc) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

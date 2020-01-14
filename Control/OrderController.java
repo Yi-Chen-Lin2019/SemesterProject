@@ -1,79 +1,61 @@
 package Control;
+import java.util.ArrayList;
+
 import Model.*;
 
-
+/**
+ * OrderController
+ *
+ * @author Yi-Chen Lin
+ * @version 20191215
+ */
 public class OrderController
 {
-    private static OrderController instance;
-    private CustomerOrderContainer orders;
-    private OrderLineController olController;
-    
-    public OrderController()
+    private OrderContainer oCon = OrderContainer.getInstance();
+    //private CustomerContainer cCon;
+    public boolean createOrder(String orderedDate)
     {
-        orders = CustomerOrderContainer.getInstance();
-        olController = OrderLineController.getInstance();
+        CustomerOrder o = new CustomerOrder(orderedDate);
+        oCon.addOrder(o);
+        return true;
     }
     
-    public static OrderController getInstance()
+    public GenericOrder findOrder(int orderID)
     {
-        if(instance == null)
-        {
-            instance = new OrderController();
-        }
-        return instance;
-    }
-    public int createOrder(String orderedDate, EmployeeRole employee, CustomerRole customer)
-    {
-        CustomerOrder order = new CustomerOrder(orderedDate, "Not delivered yet", 0, employee, "waiting for confirmation", customer);
-        orders.add(order);
-        return order.getOrderID();
-    }
-    public CustomerOrder findOrder(int id)
-    {
-        for(CustomerOrder order : orders.read())
-        {
-            if(order.getOrderID() == id)
-            {
-                return order;
+        GenericOrder o = null;
+        for(int i= 0; i < oCon.readOrders().size(); i++)
+        {           
+            if(oCon.readOrders().get(i).getID() == orderID) {
+                o = oCon.readOrders().get(i);
             }
         }
-        return null;
+        return o;
     }
-    /*public void addOrderLine(CustomerOrder order, int quantity, double price, String barcode)
+    public void printOrder(int orderID)
     {
-        order.addOrderLine(olController.createOrderLine(quantity, price, barcode));
-        order.setTotalPrice(order.getTotalPrice() + price);
-    }*/
-    public boolean cancelOrder(int id)
-    {
-        for(CustomerOrder order : orders.read())
-        {
-            if(order.getOrderID() == id)
-            {
-                orders.remove(order);
-                return true;
-            }
+        if(findOrder(orderID)!=null){
+            findOrder(orderID).printOrder();
+        }else{
+            System.out.println("No such order");
         }
-        return false;
-    }
-    public void updateOrderStatus(String status,int id)
+    }  
+    public void printAllOrders()
     {
-        for(CustomerOrder order : orders.read())
-        {
-            if(order.getOrderID() == id)
+        if(oCon.readOrders().size() !=0) {
+            for(int index= 0; index < oCon.readOrders().size(); index++)
             {
-                order.setStatus(status);
+                oCon.readOrders().get(index).printOrder();
+                System.out.println("____________________\n");    
             }
+        }else 
+        {
+            System.out.println("There are no Orders...");
         }
     }
-    public void updateOrderDeliveryDate(String deliveryDate,int id)
-    {
-        for(CustomerOrder order : orders.read())
-        {
-            if(order.getOrderID() == id)
-            {
-                order.setDeliveryDate(deliveryDate);
-            }
-        }
+    public ArrayList<GenericOrder> getAllOrders(){
+
+    		return oCon.readOrders();
     }
+ 
+ 
 }

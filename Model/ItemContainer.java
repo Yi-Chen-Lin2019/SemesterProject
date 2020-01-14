@@ -1,26 +1,23 @@
 package Model;
 import java.util.*;
-import java.io.*;
-import java.text.*;
 
 public class ItemContainer
 {
     private ArrayList<ItemDescriptor> items;
-    private static ItemContainer instance;
+    private static ItemContainer iCon;
     
     private ItemContainer()
     {
         items = new ArrayList<>();
     }
-
-    public static ItemContainer getInstance()
-    {
-        if(instance == null)
+    public static ItemContainer getInstance() {
+    	if (iCon==null)
         {
-            instance = new ItemContainer();
+            iCon=new ItemContainer();
         }
-        return instance;
-    }
+        return iCon;
+	}
+
     public void add(ItemDescriptor item)
     {
         items.add(item);
@@ -33,13 +30,6 @@ public class ItemContainer
     {
         return items;
     }
-    
-    
-    public void print() {
-        for(ItemDescriptor item : items) {
-            System.out.println(item.toString());
-        }
-    }
-    
-    
+
+	
 }

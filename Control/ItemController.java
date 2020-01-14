@@ -36,12 +36,9 @@ public class ItemController
         if(getItem(barcode) !=null)
         {
             Copy copy = new Copy(serialNumber);
-            ((Product) getItem(barcode)).addCopy(copy);
-            return true;
-        }else {
-            System.out.println("Try other barcode");
-            return false;
+            return ((Product) getItem(barcode)).addCopy(copy);
         }
+        return false;
         
     }
     public ItemDescriptor getItem(String barcode) {
@@ -65,19 +62,22 @@ public class ItemController
         KB pac = new KB(barcode, name, price);
         iCon.add(pac);  
         return true;
-    } 
-    
+    }   
     public void printAllItems()
     {
-        /*for(int index = 0; index < iCon.read().size(); index++) {               
-                /*if(iCon.read().get(index) instanceof Product) {
-                    p = (Product)iCon.read().get(index);
-                    p.print();
-            iCon.read().get(index).print();
-            System.out.println("___________________");
-        }*/      
+        if(iCon.read().size()!=0){
+            for(int index = 0; index < iCon.read().size(); index++) {               
+                System.out.println(iCon.read().get(index).toString());
+                if(iCon.read().get(index) instanceof Product){
+                    ((Product)iCon.read().get(index)).printCopies();
+                }
+                System.out.println("\n____________________\n"); 
+            } 
+        }else 
+        {
+            System.out.println("There are no Products...");
+        }      
         
-        iCon.print();
     }
     
     public boolean removeItem(String barcode)
@@ -96,6 +96,8 @@ public class ItemController
             }
         return finished;
     }
+    public ArrayList<ItemDescriptor> getAllItems(){
+    	return iCon.read();
+    }
     
-
 }

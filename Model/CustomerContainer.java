@@ -3,32 +3,46 @@ import java.util.*;
 
 public class CustomerContainer
 {
-    private ArrayList<CustomerRole> customers;
-    private static CustomerContainer instance;
-    
+    private ArrayList<LegalPerson> customers;
+    private static CustomerContainer cCon;
     private CustomerContainer()
     {
         customers = new ArrayList<>();
     }
-
+    
     public static CustomerContainer getInstance()
     {
-        if(instance == null)
+        if (cCon==null)
         {
-            instance = new CustomerContainer();
+            cCon=new CustomerContainer();
         }
-        return instance;
+        return cCon;
     }
-    public void add(CustomerRole customer)
+
+    public void add(LegalPerson customer)
     {
-        customers.add(customer);
+        if(customer.getCustomer()!=null){
+            customers.add(customer);
+        }
     }
     public void remove(CustomerRole customer)
     {
         customers.remove(customer);
     }
-    public ArrayList<CustomerRole> read()
+    public ArrayList<LegalPerson> read()
     {
         return customers;
+    }
+    
+    public LegalPerson getCustomer(String customerID)
+    {
+        Private person = null;
+        for(int i = 0; i < customers.size(); i++){
+            if(customers.get(i).getPhoneNumber().equals(customerID))
+            {
+                person = (Private)customers.get(i);
+            }
+        }
+        return person;
     }
 }

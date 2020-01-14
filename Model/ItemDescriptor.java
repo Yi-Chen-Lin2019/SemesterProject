@@ -10,6 +10,9 @@ public abstract class ItemDescriptor
         this.barcode = barcode;
         this.name = name;
     }
+    public String toString() {
+        return  "Name: "+name + "\n Barcode: " + barcode;
+    }
     
     public String getBarcode()
     {
@@ -27,13 +30,8 @@ public abstract class ItemDescriptor
     {
         this.name = name;
     }
-    public String toString() {
-        return name + " with barcode: " + barcode;
-        
-    }
     public double getSellingPrice()
     {
-        return 1.0;
+        return 100000000.0;
     }
- 
 }

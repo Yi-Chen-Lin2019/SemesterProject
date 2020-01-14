@@ -4,21 +4,12 @@ import java.util.*;
 public class LoanContainer
 {
     private ArrayList<Loan> loans;
-    private static LoanContainer instance;
     
-    private LoanContainer()
+    public LoanContainer()
     {
         loans = new ArrayList<>();
     }
 
-    public static LoanContainer getInstance()
-    {
-        if(instance == null)
-        {
-            instance = new LoanContainer();
-        }
-        return instance;
-    }
     public void add(Loan loan)
     {
         loans.add(loan);

@@ -1,28 +1,37 @@
-package Model;
-import java.util.*;
+    package Model;
 
+/**
+ * GenericOrder
+ *
+ * @author Yi-Chen Lin
+ * @version 20191215
+ */
 public abstract class GenericOrder
 {
     private static int id = 0;
     private int orderID;
     private String orderedDate;
+    private String deliveryAddress;
     private String deliveryDate;
     private double totalPrice;
     private EmployeeRole employee;
+    private CustomerRole customer;
     public String status;
     
-    public GenericOrder(String orderedDate, String deliveryDate, double totalPrice, EmployeeRole employee, String status)
+    
+    public GenericOrder(String orderedDate)
     {
-        this.orderID = id;
-        id++;
+        this.orderID = id++;        
         this.orderedDate = orderedDate;
-        this.deliveryDate = deliveryDate;
-        this.totalPrice = totalPrice;
-        this.employee = employee;
-        this.status = status;
+        this.deliveryAddress = null;
+        this.deliveryDate = null;
+        this.totalPrice = 0.0;
+        this.employee = null;
+        this.customer = null;
+        this.status = "offer";
     }
 
-    public int getOrderID()
+    public int getID()
     {
         return orderID;
     }
@@ -42,10 +51,11 @@ public abstract class GenericOrder
     {
         return totalPrice;
     }
+    /*
     public EmployeeRole getEmployee()
     {
-        return employee;
-    }
+        return employee;        
+    }*/
     public void setDeliveryDate(String deliveryDate)
     {
         this.deliveryDate = deliveryDate;
@@ -54,14 +64,31 @@ public abstract class GenericOrder
     {
         this.totalPrice = totalPrice;
     }
+    /*
     public void setEmployee(EmployeeRole employee)
     {
-        this.employee = employee;
-    }
+        //this.employee = employee;
+    }*/
     public void setStatus(String status)
     {
         this.status = status;
     }
-    public abstract void addOrderLine(OrderLine orderline);
-    public abstract void addCopyOrderLine(OrderLineOfCopy orderline);
+
+    public abstract boolean addCopyOrderLine(OrderLineOfCopy oc);
+
+    public abstract boolean addOrderLine(OrderLine ol);
+    
+    //public abstract OrderLine getOrderLine(int orderLineNum);
+    //public abstract OrderLineOfCopy getOrderLineOfCopy(int orderLineNum);
+    
+    public void printOrder()
+    {
+        System.out.println("Order ID: " + orderID);
+        System.out.println("Order date: " + orderedDate);
+        System.out.println("Delivery address: " + deliveryAddress);
+        System.out.println("Delivery date: "+ deliveryDate);
+        System.out.println("Total price: "+ totalPrice);
+        System.out.println("Status: "+ status);
+    }
+    
 }
