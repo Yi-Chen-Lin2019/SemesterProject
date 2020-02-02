@@ -3,27 +3,23 @@ package Control;
 
 import Model.*;
 
-
+/**
+ * OrderLineController
+ *
+ * @author Yi-Chen Lin
+ * @version 20191215
+ */
 
 public class OrderLineController
 {
-    private static OrderLineController instance;
-    
-    private OrderLineController()
+
+    public OrderLineController()
     {
     }
-    
-    public static OrderLineController getInstance()
+
+    public boolean addOrderLine(int orderId, String barcode, int quantity)
     {
-        if(instance == null)
-        {
-            instance = new OrderLineController();
-        }
-        return instance;
-    }
-    public boolean addOrderLine(int orderId, String barcode, int quantity, int price)
-    {
-        OrderController oCtr = OrderController.getInstance();
+        OrderController oCtr = new OrderController();
         GenericOrder order = oCtr.findOrder(orderId);
         if (order == null)
         {
@@ -39,19 +35,18 @@ public class OrderLineController
             return false;
         }
         // Create new suborder and link it to the found item descriptor
-        OrderLine ol= new OrderLine(quantity,price, item);
+        OrderLine ol= new OrderLine(quantity, item);
         // Insert this suborder in the found order
-        order.addOrderLine(ol);
-        return true;
+        return order.addOrderLine(ol);
     }
     
-    public boolean addCopyOrderLine(int orderId, String barcode, int price)
+    public boolean addCopyOrderLine(int orderId, String barcode)
     {
         OrderController oCtr = new OrderController();
         GenericOrder order = oCtr.findOrder(orderId);
         if (order == null)
         {
-            System.out.println("Error here");
+            //System.out.println("Error here");
             return false;
             // This should not happen if we had chosen an existing order
         }
@@ -61,27 +56,31 @@ public class OrderLineController
         Copy copy = iCtr.getCopy(barcode);
         if (copy == null)
         {
-            System.out.println("Error here2");
+           // System.out.println("Error here2");
             return false;
         }
         // Create new suborder and link it to the found item descriptor
-        OrderLineOfCopy oc= new OrderLineOfCopy(price,copy);
+        OrderLineOfCopy oc= new OrderLineOfCopy(copy);
         oc.setPrice(iCtr.getItem(barcode).getSellingPrice());
         // Insert this suborder in the found order
-        order.addCopyOrderLine(oc);
-        return true;
+        return order.addCopyOrderLine(oc);
     }
     
-    public boolean editOrderLine(int orderId, String barcode, int quantity)
+    public boolean editOrderLine(int orderId, int orderLineID, String barcode, int quantity)
     {
         OrderController oCtr = new OrderController();
-        GenericOrder order = oCtr.findOrder(orderId);
+        CustomerOrder order = (CustomerOrder)oCtr.findOrder(orderId);
         if (order == null)
         {
             return false;
             // This should not happen if we had chosen an existing order
         }
-  
+        if (order.getOrderLine(orderLineID)== null)
+        {
+            return false;
+            // This should not happen if we had chosen an existing order
+        }
+        
         // Get the relevant itemdescriptor: Cooperation with the itemdescriptor controller
         ItemController iCtr = new ItemController();
         ItemDescriptor item =iCtr.getItem(barcode);
@@ -89,10 +88,15 @@ public class OrderLineController
         {
             return false;
         }
-        // Create new suborder and link it to the found item descriptor
-        OrderLine ol= new OrderLine(quantity,0, item);
+        if(item instanceof Product)
+        {
+            if(!((Product)item).isUnique()){
+                return false;
+            }
+        }
+        order.getOrderLine(orderLineID).setItem(item);
+        order.getOrderLine(orderLineID).setQuantity(quantity);
         // Insert this suborder in the found order
-        order.addOrderLine(ol);
         return true;
     }
     
@@ -108,15 +112,15 @@ public class OrderLineController
             // This should not happen if we had chosen an existing order
         }
         order = (CustomerOrder) order;
-        if(order.getOrderLine(orderLineNum)==null){
+        if(((CustomerOrder) order).getOrderLine(orderLineNum)==null){
             return false;
         }
-        order.remove(order.getOrderLine(orderLineNum));
+        order.remove(((CustomerOrder) order).getOrderLine(orderLineNum));
         return true;
     }
     public boolean removeCopyOrderLine(OrderLineOfCopy orderLineOfCopy)
-    {
-    OrderController oCtr = new OrderController();
+    {	
+    	OrderController oCtr = new OrderController();
         GenericOrder order = oCtr.findOrder(orderId);
         if (order == null)
         {
@@ -131,8 +135,8 @@ public class OrderLineController
         order.remove(order.getOrderLine(orderLineNum));
         return true;
     
-    }
-    */
+    }*/
+    
    
     
     
@@ -141,3 +145,5 @@ public class OrderLineController
     
     
 }
+
+

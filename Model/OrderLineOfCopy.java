@@ -1,16 +1,22 @@
 package Model;
 
-public class OrderLineOfCopy
+public class OrderLineOfCopy extends GenericOL
 {
+    private static int number = 1;
+    private int orderLineOfCopyNum;
     private double price;
     private Copy copy;
     
-    public OrderLineOfCopy(double price, Copy copy)
+    
+    public OrderLineOfCopy(Copy copy)
     {
-        this.price = price;
+        orderLineOfCopyNum = number++;
         this.copy = copy;
     }
-
+    public int getNum()
+    {
+        return orderLineOfCopyNum;
+    }
     public double getPrice()
     {
         return price;
@@ -27,4 +33,21 @@ public class OrderLineOfCopy
     {
         this.copy = copy;
     }
+
+    public void print() {
+        System.out.println("Order Line Of Copy Number: "+ orderLineOfCopyNum);
+        System.out.println(copy.toString());
+        System.out.println("Price: "+ price);
+    }
+    
+    public int getOrderLineNum()
+    {
+        return orderLineOfCopyNum;
+    }
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return copy.getSerialNumber();
+	}
+    
 }
