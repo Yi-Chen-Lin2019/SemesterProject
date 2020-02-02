@@ -2,20 +2,20 @@ package Model;
 
 public class Location
 {
-    private String department;
+    private String depot;
     private String address;
     private String shelf;
     
-    public Location(String department, String address, String shelf)
+    public Location(String depot, String address, String shelf)
     {
-        this.department = department;
+        this.depot = depot;
         this.address = address;
         this.shelf = shelf;
     }
     
-    public String getDepartment()
+    public String getDepot()
     {
-        return department;
+        return depot;
     }
     public String getAddress()
     {
@@ -24,5 +24,17 @@ public class Location
     public String getShelf()
     {
         return shelf;
+    }
+    public void setDepot(String depot)
+    {
+        this.depot = depot;
+    }
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+    public void setShelf(String shelf)
+    {
+        this.shelf = shelf;
     }
 }

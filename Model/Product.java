@@ -28,9 +28,15 @@ public class Product extends ItemDescriptor
         sellingPrice = sell;
         isUnique = false;
     }
-    
     public String toString() {
-        return  super.toString() +    "\n Id of product: " + categoryID + "\n Minimum stock: " + minStock + "\n Maximum stock: " + maxStock + "\n Recommended retail price: " + recommendedRetailPrice + "\n Trade allowance: " + tradeAllowance + "\n Cost price: " + costPrice + "\n Sell price: " +sellingPrice;
+        return  super.toString() + 
+        "\n Category ID: " + categoryID + 
+        "\n Minimum stock: " + minStock + 
+        "\n Maximum stock: " + maxStock + 
+        "\n Recommended retail price: " + recommendedRetailPrice + 
+        "\n Trade allowance: " + tradeAllowance + 
+        "\n Cost price: " + costPrice + 
+        "\n Sell price: " + sellingPrice;
     }
     
     public int getCategoryID()
@@ -119,22 +125,56 @@ public class Product extends ItemDescriptor
     }
     public Copy getCopy()
     {
-    	Copy c = null;
-    	if(!copies.isEmpty()) {
-    		c = copies.pop();
-    	}
-    	return c;
+        Copy c = null;
+        if(!copies.isEmpty()) {
+            c = copies.pop();
+        }else {
+            System.out.println("There is no copy");
+        }
+        return c;
     }
     
-    public void printCopy() {
-        copies.peek();
-    }
-    
-    public void addCopy(Copy copy)
+    public boolean addCopy(Copy copy)
     {
-    	if(!isUnique) {
-    		copies.push(copy);
-    	}
-    }    
+        if(!isUnique) {
+            copies.push(copy);
+            return true;
+        }else {
+            return false;
+        }
+    }
+    
+    public void printCopies()
+    {
+        if(!copies.isEmpty()) {
+            Iterator<Copy> it = copies.iterator();
+            while(it.hasNext()) {
+                Copy copy = it.next();
+                System.out.print(copy.toString());
+            }       
+        }
+    }  
+    public String getCopies(){
+    	String result = "";
+    	if(!copies.isEmpty()) {
+            Iterator<Copy> it = copies.iterator();
+            while(it.hasNext()) {
+                Copy copy = it.next();
+                result += copy.toString()+", ";
+            }       
+        }
+    	return result;
+    }
+    public int getCopiesNum() {
+    	int result = 0;
+    	
+            Iterator<Copy> it = copies.iterator();
+            while(it.hasNext()) {
+                result ++;
+            }       
+        
+    	return result;
+    }
+    
+    
 }
-

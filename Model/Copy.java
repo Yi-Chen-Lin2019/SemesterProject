@@ -5,11 +5,15 @@ public class Copy
 {
     private String serialNumber;
     
+
     public Copy(String serialNumber)
     {
         this.serialNumber = serialNumber;
-    }
         
+    }
+    public String toString() {
+        return  serialNumber;
+    }    
     
     public String getSerialNumber()
     {
@@ -20,4 +24,5 @@ public class Copy
     {
         this.serialNumber = serialNumber;
     }
+    
 }

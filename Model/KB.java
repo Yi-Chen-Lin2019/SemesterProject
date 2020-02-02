@@ -12,6 +12,9 @@ public class KB extends ItemDescriptor
         this.price = price;
         products = new ArrayList<>();
     }
+    public String toString() {
+        return super.toString() + "\n Price: " + price;
+    }
     public double getSellingPrice()
     {
         return price;
@@ -28,8 +31,5 @@ public class KB extends ItemDescriptor
     {
         products.add(product);
     }
-    public String toString() {
-        return super.toString() + "\n price: " + price;
-    }
-   
+    
 }

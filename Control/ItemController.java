@@ -33,15 +33,12 @@ public class ItemController
     }
     public boolean addCopy(String barcode, String serialNumber)
     {
-        if(getItem(barcode) !=null)
+        if(getItem(barcode) !=null && serialNumber != null)
         {
             Copy copy = new Copy(serialNumber);
-            ((Product) getItem(barcode)).addCopy(copy);
-            return true;
-        }else {
-            System.out.println("Try other barcode");
-            return false;
+            return ((Product) getItem(barcode)).addCopy(copy);
         }
+        return false;
         
     }
     public ItemDescriptor getItem(String barcode) {
@@ -55,29 +52,40 @@ public class ItemController
     }
     public boolean addProduct(String barcode, String name, int id, int min, int max, double rec, double trade, double cost, double sell)
     {
-        Product p = new Product(barcode, name, id, min, max, rec, trade, cost, sell);
-        iCon.add(p);
-        return true;
+        boolean success= false;
+    	
+        	Product p = new Product(barcode, name, id, min, max, rec, trade, cost, sell);
+            iCon.add(p);
+            success = true;
+        
+    	return success;
         
     }
     public boolean addPackage(String barcode, String name, double price)
     {
-        KB pac = new KB(barcode, name, price);
-        iCon.add(pac);  
-        return true;
-    } 
-    
+    	boolean success = false;
+    	
+	    	KB pac = new KB(barcode, name, price);
+	        iCon.add(pac);  
+	        success = true;
+        
+        return success;
+    }   
     public void printAllItems()
     {
-        /*for(int index = 0; index < iCon.read().size(); index++) {               
-                /*if(iCon.read().get(index) instanceof Product) {
-                    p = (Product)iCon.read().get(index);
-                    p.print();
-            iCon.read().get(index).print();
-            System.out.println("___________________");
-        }*/      
+        if(iCon.read().size()!=0){
+            for(int index = 0; index < iCon.read().size(); index++) {               
+                System.out.println(iCon.read().get(index).toString());
+                if(iCon.read().get(index) instanceof Product){
+                    ((Product)iCon.read().get(index)).printCopies();
+                }
+                System.out.println("\n____________________\n"); 
+            } 
+        }else 
+        {
+            System.out.println("There are no Products...");
+        }      
         
-        iCon.print();
     }
     
     public boolean removeItem(String barcode)
@@ -96,6 +104,8 @@ public class ItemController
             }
         return finished;
     }
+    public ArrayList<ItemDescriptor> getAllItems(){
+    	return iCon.read();
+    }
     
-
 }
